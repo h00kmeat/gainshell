@@ -3,7 +3,7 @@ import os
 import sys
 
 def bind_shell(port):
-    host = '0.0.0.0'  # Прослушиваем все доступные интерфейсы
+    host = '0.0.0.0'  
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((host, port))
         s.listen(1)
